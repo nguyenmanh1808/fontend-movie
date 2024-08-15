@@ -1,0 +1,59 @@
+.header-container{
+    background-color: #303030;
+   
+    .navbar{
+        margin: 0 40px;
+        .navbar-brand{
+            color: rgba(255,255,255,0.87);
+            font-weight: 600;
+        }
+        .navbar-nav{
+            position: relative;
+            gap: 15px;
+            color: rgba(255,255,255,0.87);
+            .nav-link{
+                color: rgba(255,255,255,0.87);
+            }
+            .active{
+                color: red !important;
+            }
+            .nav-item{
+                .nav-link{
+                    color: rgba(255,255,255,0.87);
+                }
+                .dropdown-menu{
+                    
+                }
+            }
+            .search-icon{
+                position: absolute;
+                top: 18%;
+                left: 35%;
+                width: 25px;
+                height: 25px;
+            }
+            .nav-search{
+                background-color: #303030;
+                border: 1px solid #fff;   
+                border-radius: 10px;
+                padding: 0 20px;
+                margin: 0 100px 0 0;
+            }
+            .btn-login{
+                background-color: #fff;
+                margin-right: 10px;
+                color: #000;
+
+                a{
+                    text-decoration: none;
+                    color: #000;
+                }
+            }
+            .btn-signup{
+            
+            }
+           
+        }
+        
+    }
+}
