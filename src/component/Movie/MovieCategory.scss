@@ -1,0 +1,44 @@
+.movies-class-category{
+    margin: 30px  40px;
+    padding: 0 10px;
+    .movies-category{
+        margin-bottom: 30px;
+        a{
+            text-decoration: none;
+            font-size: 25px;
+            font-weight: 600;
+            color: rgb(255 255 255 / 87%);
+        }
+    }
+    .movies-list{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        width: 100%;
+        a{
+            width: 200px;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 10px;
+            color: rgb(255 255 255 / 87%);
+            font-weight: 450;
+            transition:400ms;
+            margin-bottom: 20px;
+            &:hover{
+                scale: 1.01;
+                img{
+                    border: 2px solid rgb(255 255 255 / 87%);
+                }
+            }
+            .movies_img{
+                img{
+                    object-fit: fill;
+                    width:178px;
+                    height: 268px;
+                    border-radius: 5px;
+
+                }
+            }
+        }
+    }
+}

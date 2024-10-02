@@ -3,26 +3,70 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
-import store from './redux/store';
+import {store,persistor} from './redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
+import { useDispatch,useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { BrowserRouter,Routes,Route} from "react-router-dom";
+import { BrowserRouter,Routes,Route, Router} from "react-router-dom";
 import HomePage from './component/Home/HomePage';
 import PhimMoi from './component/Movie/PhimMoi';
 import PhimBo from './component/Movie/PhimBo';
 import Login from './component/Login/Login';
+import Register from './component/Register/Register';
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import DetailMovie from './component/detailMovie/detailMovie';
+import PrivateRoutes from'./routes/privateRoutes';
+import Admin from './component/admin/admin';
+import DashBoard from './component/admin/content/DashBoard/DashBoard';
+import ManageUser from './component/admin/content/user/ManageUser'
+import ManageMovie from './component/admin/content/movies/ManageMovies';
+import UserInfor from './component/user/UserInfor';
+import MovieCategory from './component/Movie/MovieCategory';
+import ManageCategory from './component/admin/content/category/ManageCategory';
+import ManageComment from './component/admin/content/comment/ManageComment';
+import ManageEpi from './component/admin/content/epi/ManageEpi';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <BrowserRouter>
-    <Routes>
-        <Route path='/' element={<App/>}>
-            <Route index  element={<HomePage/>} />
-            <Route path='phim-moi'  element={<PhimMoi/>} />
-            <Route path='phim-bo'  element={<PhimBo/>} />
-        </Route>
-        <Route path='login' element={<Login/>} />
-    </Routes>
-    </BrowserRouter>
+    <PersistGate loading={null} persistor={persistor}>
+      <BrowserRouter>
+      <Routes>
+          <Route path='login' element={<Login/>} />
+          <Route path='register' element={<Register/>} />
+          <Route path='/' exact element={<App/>}>
+              <Route index  element={<HomePage/>} />
+              <Route path='phim-moi'  element={<PhimMoi/>} />
+              <Route path='phim-bo'  element={<PhimBo/>} />
+              <Route path='movie/category/:id' exact element={<MovieCategory/>}/>
+              <Route path='movie/:slug'  element={<DetailMovie/>}/>
+              <Route path='/account' element={<UserInfor/>} />
+          </Route>
+
+          <Route path="/admin" element={<PrivateRoutes Component={Admin}/>}>
+            <Route  index element={<DashBoard />}/> 
+            <Route path="manage-user"  element={<ManageUser />}/> 
+            <Route path='manage-movie' element={<ManageMovie/>} />
+            <Route path='manage-category' element={<ManageCategory/>} />
+            <Route path='manage-comment' element={<ManageComment/>}/>
+            <Route path='manage-eps/:id' element={<ManageEpi/>}/>
+          </Route> 
+
+          <Route path='*' element="404 not found" />
+      </Routes>
+      <ToastContainer
+                  position="top-right"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+        />
+      </BrowserRouter>
+    </PersistGate>
   </Provider>
 );
 

@@ -1,0 +1,38 @@
+.manage-comment-container{
+    position: relative;
+    .title{
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 30px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 25px;
+        border-bottom: 1px solid #ccc;
+    }
+    .comment-content{
+        margin-left: 30px;
+        padding: 10px;
+        .table-comment-container{
+            display: flex;
+            gap: 30px;
+            button{
+                margin: 0 30px;
+                svg{
+                    margin-right: 3px;
+                    margin-bottom: 4px;
+                }
+            }
+            .btn-add-new{
+                margin: 15px 30px;
+            }
+        }
+       
+        tbody{
+            th{
+                font-weight: 400 !important;
+            }
+        }
+    }
+    
+}

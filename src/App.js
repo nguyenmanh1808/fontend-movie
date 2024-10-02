@@ -1,6 +1,6 @@
 
 import './App.scss';
-import SlideShow from './component/Home/SlideShow';
+import Footer from './component/footer/footer';
 import Header from './component/Navigation/Header';
 import { Outlet, Link } from "react-router-dom";
 
@@ -12,16 +12,13 @@ const App = () => {
          <Header/>
       </div>
       <div className='main-container'>
-        <div className='sidebar-container'>
-            <div className='slide-container'>
-                <SlideShow/>
-            </div>
-        </div>
-        <div className='app-content'></div>
-         <Outlet/>
+        <Outlet/>
+      </div>
+      <div className='footer-container'>
+        <Footer/>
       </div>
     </div>
-  );
+  )
 }
 
 export default App;
