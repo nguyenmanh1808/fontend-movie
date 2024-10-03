@@ -1,0 +1,190 @@
+.movie_conatiner{
+    box-sizing: border-box;
+    min-width: 0px;
+    justify-content: space-around;
+    display: flex;
+    .movie_video{
+        width: 616px;
+        height: 346px;
+        position: relative;
+        video{
+            position: absolute;
+            background-color: rgba(0, 0, 0, 1.5);
+            width: 100%;
+            height: 100%;
+            top: 100px;
+            left: 60px;
+        }
+    }
+    .movie_infor{
+        background-color: rgb(5, 5,5);
+        margin-top: 100px;
+        margin-right: 20px;
+        height: 346px;
+        width: 571px;
+        padding: 0  10px;
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        .movie_name{
+            color: rgb(255 255 255 / 87%);
+        }
+        .movie_classify{
+            
+            .movie_class_link{
+                text-decoration: none;
+                color: rgb(255 255 255 / 40%);
+                border: 1px solid rgb(255 255 255 / 40%);
+                margin-right: 20px;
+            }
+        }
+        .movie_content{
+           
+            color: rgb(255 255 255 / 87%);
+            overflow: hidden;
+            display: block;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 3;
+        }
+        .detail_item{
+            display: flex;
+            gap:10px;
+            .item-tiltle{
+                color: rgb(255 255 255 / 40%);
+            }
+            .item-container{
+                display: flex;
+                .item-content a{  
+                    text-decoration: none;
+                    color:rgb(255 255 255 / 40%)
+                }
+            }
+        }
+    }
+}
+.reponsive-container{
+    margin: 30px 50px;
+    .reponsive-tiltle{
+        display: flex;
+        gap:15px;
+        color: rgb(255 255 255 / 40%);
+        font-size: 22px;
+        cursor: pointer;
+    }
+    .active{
+        color: rgb(255 255 255 / 87%) !important;
+        border-bottom: 2px solid red;
+    }
+    .reposive-content{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        .epi-content{
+            margin-top: 25px;
+            font-weight: 500;
+            color: rgb(255 255 255 / 87%);
+            border: 1px solid rgb(255 255 255 / 40%);
+            &:hover{
+                border: 1px solid rgb(255 255 255 / 87%);
+            }
+        }
+        .btn-active{
+            color: red;
+        } 
+    }
+    .movies-list{
+        margin-top: 30px;
+        display: flex;
+        width: 100%;
+        a{
+            width: 200px;
+            text-align: center;
+            text-decoration: none;
+            margin: 0 10px;
+            color: rgb(255 255 255 / 87%);
+            font-weight: 450;
+            transition:400ms;
+            
+            &:hover{
+                scale: 1.01;
+                img{
+                    border: 2px solid rgb(255 255 255 / 87%);
+                }
+            }
+            .movies_img{
+                img{
+                    object-fit: fill;
+                    width:178px;
+                    height: 268px;
+                    border-radius: 5px;
+
+                }
+            }
+        }
+        .c-2-5 {
+            flex: 0 0 19%;
+            max-width: 20%;
+          }
+    }
+}
+.comment-container{
+    margin: 30px 50px;
+    
+    .comment-title{
+        color: rgb(255 255 255 / 87%);;
+    }
+    .comment-box{
+        background-color: rgba(87, 84, 85, 0.068);
+        width: 60%;
+        border-radius: 5px;
+        padding-bottom: 20px;
+        .user-comment{
+           
+            label{
+                color: rgb(255 255 255 / 87%);
+                font-size: 16px;
+                margin:15px 20px;
+            }
+            textarea{
+                background-color: #404142;
+                border: 1px solid #404142;
+                 width: 650px;
+                 height: 50px;
+                 margin-left: 30px;
+                 color: rgb(255 255 255 / 87%);
+            }
+            button{
+                float: right;
+                margin-right: 65px;
+                width: 80px;
+            }
+        }
+        .list-comment{
+            margin-top: 50px;
+            margin-left: 20px;
+            margin-bottom: 20px;
+            .comment-item{
+                margin: 15px 0;
+                .user-name{
+                    svg{
+                        color: #3498db;
+                        margin-right: 10px
+                    }
+                    span{
+                        color: #3498db;
+                        font-size: 16px;
+                        margin-top: 5px;
+                        font-weight: 550;
+                    }
+                }
+                .comment-content{
+                    margin-left: 60px;
+                    color: rgb(255 255 255 / 87%);
+                    font-size: 16px;
+                }
+            }
+        }
+    }
+    
+}

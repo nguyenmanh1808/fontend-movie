@@ -1,0 +1,62 @@
+.red{
+    border: 1px solid red;
+}
+
+.green{
+    border: 1px solid green;
+}
+
+.login-container{
+     background-color: #f2f0f5;
+     min-height: 100vh;
+     padding-top: 20px;
+    .content-left{
+        margin-top: 50px;
+        .brand{
+            font-weight: 600;
+            font-size: 30px;
+            color: #1877f2;
+            a{
+                text-decoration: none;
+            }
+        }
+        .detail{
+            font-size: 20px;
+
+        }
+    }
+    .content-right{
+        background-color: #FFFF;
+        border-radius: 10px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1);
+        box-sizing: border-box;
+        button{
+
+            &:disabled{
+                cursor: no-drop;
+            }
+        }
+        .loaderIcon {
+            
+            margin-right: 7px;
+            margin-bottom: 4px;
+            animation: spin 1s infinite linear;
+        }
+        
+        @keyframes spin {
+            from {
+                transform: scale(1) rotate(0deg);
+            }
+            to {
+                transform: scale(1) rotate(360deg);
+            }
+        }
+        .forgot-password{
+            text-decoration: none;
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+}

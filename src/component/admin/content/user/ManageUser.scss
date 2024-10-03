@@ -1,0 +1,67 @@
+.manage-user-container{
+    .title{
+        font-weight: 600;
+        font-size: 20px;
+        margin-top: 30px;
+        margin-right: 10px;
+        margin-bottom: 20px;
+        text-align: center;
+        font-size: 25px;
+        border-bottom: 1px solid #ccc;
+    }
+    .user-content{
+        padding: 10px;
+        .table-users-container{
+            display: flex;
+            gap: 30px;
+            button{
+                margin: 0 30px;
+                svg{
+                    margin-right: 3px;
+                    margin-bottom: 4px;
+                }
+            }
+            .btn-add-new{
+                margin: 15px 30px;
+            }
+        }
+       
+        tbody{
+            th{
+                font-weight: 400 !important;
+            }
+        }
+    }
+}
+.modal-add-user{
+    .img-preview{
+        border: 1px solid red;
+        height: 150px;
+        border: 1px dashed #ccc;
+        border-radius: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #ccc;
+        img{
+            max-height: 100%;
+            max-width: 100%;
+        }
+    }
+    .lable-upload{
+        display: flex;
+        align-items: center;
+        gap: 5px;
+        border: 1px solid #ccc;
+        width: fit-content;
+        padding: 3px 10px;
+        border-radius: 5px;
+        background-color: #eeee;
+        border: none;
+        cursor: pointer;
+        &:hover{
+            background-color: #dcdcdc;
+        }
+    }
+    
+}

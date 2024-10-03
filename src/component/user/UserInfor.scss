@@ -1,0 +1,86 @@
+.account-container{
+    margin-top: 30px;
+    margin-left: 50px;
+    margin-right: 50px;
+    .account{
+        display:  flex;
+        align-items: center;
+        gap: 20px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        .account-tiltle{
+            color: #fff;
+            font-size: 22px;
+            font-weight: 500;
+        }
+        .account-name{
+            color: red;
+            font-size: 22px;
+            font-weight: 500;
+        }
+    }
+    .account-infor{
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+        margin-top: 30px;
+        display: flex;
+        gap: 50px;
+        .infor-tiltle{
+            color: #fff;
+            font-size: 20px;
+            font-weight: 450;
+            width: 250px;
+            span{
+                margin-left: 10px;
+            }
+        }
+        .account-detail{
+            padding-top: 6px;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+           
+            
+            .name{
+                
+            }
+            .password{
+    
+            }
+            .age{
+    
+            }
+            
+        }
+        .update-account{
+            padding-top: 6px;
+            text-decoration: none;
+          
+        }
+    }
+    .setting-account{
+        margin-top: 30px;
+        display: flex;
+        gap: 50px;
+        .setting-tiltle{
+            color: #fff;
+            font-size: 20px;
+            font-weight: 450;
+            width: 250px;
+            span{
+                margin-left: 10px;
+            }
+        }
+        .setting-container{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            a{
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+
