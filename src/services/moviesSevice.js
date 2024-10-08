@@ -11,13 +11,17 @@ const fetchMovieById = (id)=>{
 const getAllMovies = (page,limit)=>{
     return instance.get(`/movie/read?page=${page}&limit=${limit}`)
 }
-
+const getMovies = ()=>{
+  return instance.get(`/movie/read`)
+}
 const createMovie = (data)=>{
   return (
     instance.post(`/movie/create`,{...data})
   )
 }
-
+const getMovieSearch =(data)=>{
+  return instance.get(`/movie/read?q=${data}`)
+}
 const updateMovie = (data)=>{
   return (
     instance.put('/movie/update', {...data})
@@ -27,4 +31,4 @@ const updateMovie = (data)=>{
 const deleteMovie = (data)=>{
   return instance.delete('/movie/delete', {data:{id:data.id}})
 }
-export {fetchAllMovies,fetchMovieById,getAllMovies,createMovie,updateMovie,deleteMovie}
+export {fetchAllMovies,fetchMovieById,getAllMovies,createMovie,updateMovie,deleteMovie,getMovies,getMovieSearch}

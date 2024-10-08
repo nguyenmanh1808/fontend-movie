@@ -5,7 +5,6 @@ import reportWebVitals from './reportWebVitals';
 import { Provider } from 'react-redux';
 import {store,persistor} from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import { useDispatch,useSelector } from 'react-redux';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter,Routes,Route, Router} from "react-router-dom";
 import HomePage from './component/Home/HomePage';
@@ -26,13 +25,15 @@ import MovieCategory from './component/Movie/MovieCategory';
 import ManageCategory from './component/admin/content/category/ManageCategory';
 import ManageComment from './component/admin/content/comment/ManageComment';
 import ManageEpi from './component/admin/content/epi/ManageEpi';
+import MovieSearch from './component/Movie/MovieSearch';
+import 'nprogress/nprogress.css'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
       <BrowserRouter>
       <Routes>
-          <Route path='login' element={<Login/>} />
+          <Route path='login'  element={<Login/>} />
           <Route path='register' element={<Register/>} />
           <Route path='/' exact element={<App/>}>
               <Route index  element={<HomePage/>} />
@@ -40,7 +41,8 @@ root.render(
               <Route path='phim-bo'  element={<PhimBo/>} />
               <Route path='movie/category/:id' exact element={<MovieCategory/>}/>
               <Route path='movie/:slug'  element={<DetailMovie/>}/>
-              <Route path='/account' element={<UserInfor/>} />
+              <Route path='account' element={<UserInfor/>} />  
+              <Route path='search' element={<MovieSearch/>}/>
           </Route>
 
           <Route path="/admin" element={<PrivateRoutes Component={Admin}/>}>
@@ -50,6 +52,7 @@ root.render(
             <Route path='manage-category' element={<ManageCategory/>} />
             <Route path='manage-comment' element={<ManageComment/>}/>
             <Route path='manage-eps/:id' element={<ManageEpi/>}/>
+           
           </Route> 
 
           <Route path='*' element="404 not found" />

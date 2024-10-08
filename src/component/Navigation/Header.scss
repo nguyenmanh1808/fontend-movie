@@ -32,20 +32,44 @@
             }
             .search-contaner{
                 height: 40px;
+                position: relative;
+                margin-right: 30px;
                 .search-icon{
                     position: absolute;
                     top: 18%;
-                    left: 30%;
+                    left: 78%;
                     width: 25px;
                     height: 25px;
+                    cursor: pointer;
+                    color: rgba(255,255,255,0.87);
+                    border-radius: 3px;
+                    &:hover{
+                        opacity: 0.6;
+                    }
+                }
+                .delete-icon{
+                    position: absolute;
+                    top: 16%;
+                    left: 66%;
+                    border-radius: 50%;
+                    font-size: 26px;
+                    &:hover{
+                      background-color: #28282A;
+                    }
                 }
                 .nav-search{
                     height: 100%;
-                    background-color: rgb(5, 5,5);
-                    border: 1px solid #fff;   
+                    width: 240px;
+                    background-color: rgb(5, 5, 5);
+                    border: 1px solid #fff;
                     border-radius: 10px;
-                    padding: 0 20px;
-                    margin: 0 100px 0 0;
+                    padding: 0 35px 0 20px;
+                    margin: 0 20px 0 0;
+                    color: rgba(255,255,255,0.87);
+                    
+                    &:focus{
+                        box-shadow: none !important;
+                    }
                 }
             }
            

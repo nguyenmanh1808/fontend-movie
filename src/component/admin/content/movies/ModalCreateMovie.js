@@ -24,6 +24,9 @@ const ModalCreateMovie = (props)=> {
     setInputCategory("");
     setIdcategory([]);
     setDataMovie({});
+    setYear("");
+    setImgThumb("");
+    setPreviewImg2("");
     setActionModal("CREATE");
   };
   
@@ -38,8 +41,11 @@ const ModalCreateMovie = (props)=> {
   const [ep_curent,setEpCurent]= useState(0);
   const [ep_total,setEpTotal]= useState()
   const [url_img,setImage] = useState("");
+  const [img_thumb,setImgThumb] = useState("");
+  const [year,setYear] = useState("");
   const [actor,setActor] = useState("");
   const [previewImg,setPreviewImg] = useState("");
+  const [previewImg2,setPreviewImg2] = useState("");
   ////
   const [inputCategory,setInputCategory] = useState([])
   const [idCategory,setIdcategory] = useState([]);
@@ -64,8 +70,10 @@ const ModalCreateMovie = (props)=> {
       setActor(dataMovie.actor?dataMovie.actor : "");
       setNational(dataMovie.national);
       setDescription(dataMovie.description);
-      setEpTotal(dataMovie.ep_total)
+      setEpTotal(dataMovie.ep_total);
+      setYear(dataMovie.year?dataMovie.year: "" );
       setPreviewImg(require(`../../../../assets/img_poster/${dataMovie.url_img}`))
+      setPreviewImg2(dataMovie.img_thumb? require(`../../../../assets/SlideImage/${dataMovie.img_thumb}`):"" );
       setIsCategory(true)
     }
   },[dataMovie])
@@ -82,6 +90,16 @@ const ModalCreateMovie = (props)=> {
     if(event.target && event.target.files && event.target.files[0]){
         setPreviewImg(URL.createObjectURL(event.target.files[0]))
         setImage(event.target.files[0])
+    }
+    else{
+        // setPreviewImg(null)
+    }
+  }
+  ////
+  const handleImgThumbUpload = (event) =>{
+    if(event.target && event.target.files && event.target.files[0]){
+        setPreviewImg2(URL.createObjectURL(event.target.files[0]))
+        setImgThumb(event.target.files[0])
     }
     else{
         // setPreviewImg(null)
@@ -133,6 +151,10 @@ const ModalCreateMovie = (props)=> {
       toast.error("Poster phim trống");
       return false;
     }
+    if(!img_thumb  && !dataMovie.img_thumb){
+      toast.error("Slide phim trống");
+      return false;
+    }
     if(!national){
       toast.error("Quốc gia  trống");
       return false;
@@ -156,6 +178,8 @@ const ModalCreateMovie = (props)=> {
         ep_total: ep_total ? +ep_total : 0,
         url_img: url_img.name,
         actor: actor ? actor : "",
+        year:year,
+        img_thumb: img_thumb.name,
         categoryId: idCategory
       }
       let res = await createMovie(data);
@@ -227,6 +251,8 @@ const ModalCreateMovie = (props)=> {
           ep_total: ep_total ? +ep_total : 0,
           url_img: url_img.name ? url_img.name : dataMovie.url_img,
           actor: actor ? actor : "",
+          year:year? year : "",
+          img_thumb: img_thumb.name ? img_thumb.name : dataMovie.img_thumb,
           categoryId: listIdCateMovie
         }
         let res = await updateMovie(data);
@@ -327,15 +353,29 @@ const ModalCreateMovie = (props)=> {
             <label  className="form-label">Description</label>
             <textarea id="form-label" name="w3review" className='form-control' rows="4" cols="50" value={description} onChange={(event)=>{setDescription(event.target.value)}}></textarea>
         </div>
-        <div className='col-md-12'>
+        <div className='col-md-6'>
             <label className='form-lable lable-upload' htmlFor='lableUpload'> 
                 <FcPlus/>
                  Upload poster image</label>
             <input id='lableUpload' type='file' hidden    onChange={event => handleImgUpload(event)} />
         </div>
-        <div className='col-md-6 img-preview'>
+        <div className='col-md-6'>
+            <label className='form-lable lable-upload' htmlFor='lableUpload2'> 
+                <FcPlus/>
+                 Upload image thumb</label>
+            <input id='lableUpload2' type='file' hidden    onChange={event => handleImgThumbUpload(event)} />
+        </div>
+        <div className='col-md-6 img-preview  '>
             {previewImg ? 
                 <img src={previewImg} />
+                :
+                <span>Preview image</span>
+            }
+            
+        </div>
+        <div className='col-md-6 img-preview thumb-img'>
+            {previewImg2 ? 
+                <img src={previewImg2} />
                 :
                 <span>Preview image</span>
             }
@@ -344,6 +384,10 @@ const ModalCreateMovie = (props)=> {
         <div className="col-md-3">
             <label  className="form-label">Số tập phim</label>
             <input type="number" className="form-control"   value={ep_total}  onChange={(event) => {setEpTotal(event.target.value)}}/>
+        </div>
+        <div className="col-md-3">
+            <label  className="form-label">Năm phát hành</label>
+            <input type="text" className="form-control"   value={year}  onChange={(event) => {setYear(event.target.value)}}/>
         </div>
         </form>
         </Modal.Body>

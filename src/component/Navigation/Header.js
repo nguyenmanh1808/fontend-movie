@@ -6,7 +6,6 @@ import NavDropdown from 'react-bootstrap/NavDropdown';
 import './Header.scss'
 import {  Link,NavLink ,useNavigate} from "react-router-dom";
 import { CiSearch } from "react-icons/ci"
-import { IconContext } from "react-icons";
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { persistor } from '../../redux/store';
@@ -14,7 +13,8 @@ import { logOutUser } from '../../services/userService';
 import { toast } from 'react-toastify';
 import { refesh } from '../../redux/action/refeshUserAction';
 import { useDispatch } from 'react-redux';
-import {fetchAllCategory} from '../../services/categoryService'
+import {fetchAllCategory} from '../../services/categoryService';
+import { IoCloseOutline } from "react-icons/io5";
 function Header() {
   //thông tin user
   let history = useNavigate();
@@ -22,8 +22,9 @@ function Header() {
   const account = useSelector(state => state.user.account);
   const isAuthenticated = useSelector(state => state.user.isAuthenticated);
   ///
-
   const[listCategory,setLisCategory]= useState([]);
+  const[inputSearch,setInputSearch] = useState("");
+  ///
   const handleLogOut = async ()=>{
       let res = await logOutUser();
       if (res.data && res.data.EC === 0){
@@ -49,6 +50,14 @@ function Header() {
     history(`/movie/category/${item.id}`)
     window.location.reload();
   }
+  const handleSearch = ()=>{
+    history(`search?q=${inputSearch}`)
+  }
+  const handleOnKeyPress = (event)=>{
+    if(event.charCode === 13 && event.code === "Enter"){
+      handleSearch();
+    }
+}   
   useEffect(()=>{
     getCategory();
   },[])
@@ -86,12 +95,12 @@ function Header() {
             
           </Nav>
           <Nav>
-            <div className='search-contaner'>
-              <IconContext.Provider value={{  className: "search-icon" }}>    
-                <CiSearch  />
-              </IconContext.Provider>
-            
-              <input type='text' placeholder='Tìm kiếm' className='nav-search'/>
+            <div className='search-contaner'>  
+                <CiSearch className= 'search-icon' onClick={()=>{ if(inputSearch) { handleSearch() } } } />
+            {inputSearch &&   
+            <IoCloseOutline className='delete-icon' onClick={()=>(setInputSearch(""))}  />
+            }
+              <input type='text' value={inputSearch} onChange={(event)=>{setInputSearch(event.target.value)}} onKeyPress={(event=>handleOnKeyPress(event))} placeholder='Tìm kiếm' className='nav-search form-control'/>
             </div>
             
             {isAuthenticated ?

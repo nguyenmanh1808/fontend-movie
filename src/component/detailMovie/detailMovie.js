@@ -94,6 +94,7 @@ const DetailMovie = (props) =>{
     //lấy danh sach phim tương tự
 
     const getMovieSimilar = async ()=>{
+        let movieID = sessionStorage.getItem("movieId");
         let data= []
         if(category && category.length > 0){
             await Promise.all(
@@ -105,6 +106,9 @@ const DetailMovie = (props) =>{
                         }
                 })
             )
+            data = data.filter((item,index)=>{
+                return item.id !=  movieID;
+            })
            if(data && data.length > 0){
                 setMovieSimilar(data);
            }
