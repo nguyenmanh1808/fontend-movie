@@ -24,6 +24,7 @@ function Header() {
   ///
   const[listCategory,setLisCategory]= useState([]);
   const[inputSearch,setInputSearch] = useState("");
+  const listNational = ["Việt Nam","Trung Quốc","Hàn Quốc","Nhật Bản","Mỹ"]
   ///
   const handleLogOut = async ()=>{
       let res = await logOutUser();
@@ -33,7 +34,7 @@ function Header() {
             return persistor.purge();
           });
           dispatch(refesh()) ;
-          history("/")
+          history("/");
           toast.success("Đăng xuất thành công")
       }
       else{
@@ -71,9 +72,9 @@ function Header() {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <NavLink to="/phim-moi" className="nav-link">Phim mới</NavLink>
-            <NavLink to="/phim-le" className="nav-link">Phim lẻ</NavLink>
-            <NavLink to="/phim-bo" className="nav-link">Phim bộ</NavLink>
+            <Nav  className="nav-link">Phim mới</Nav>
+            <NavLink to="/type/phim-le" className="nav-link">Phim lẻ</NavLink>
+            <NavLink to="/type/phim-bo" className="nav-link">Phim bộ</NavLink>
             <NavDropdown title="Thể loại" >
               {listCategory && listCategory.length> 0 && 
                   Array.from({length:listCategory.length > 5 ? 5: listCategory.length }).map((_,index)=>{
@@ -86,11 +87,13 @@ function Header() {
              
             </NavDropdown>
             <NavDropdown title="Quốc gia">
-                <NavDropdown.Item > <Link to="/#" className='dropdown-item'>Việt Nam</Link></NavDropdown.Item>
-                <NavDropdown.Item > <Link to="/#" className='dropdown-item'>Trung Quốc</Link></NavDropdown.Item>
-                <NavDropdown.Item > <Link to="/#" className='dropdown-item'>Hàn Quốc</Link></NavDropdown.Item>
-                <NavDropdown.Item > <Link to="/#" className='dropdown-item'>Thái Lan</Link></NavDropdown.Item>
-                <NavDropdown.Item > <Link to="/#" className='dropdown-item'>Mỹ</Link></NavDropdown.Item>
+              {listNational.map((item,index)=>{
+                return (
+                  <NavDropdown.Item key={`national-${index}`}> <Link to={`/national/${item}`} className='dropdown-item'>{item}</Link></NavDropdown.Item>
+                )
+              } )
+
+              }
             </NavDropdown>
             
           </Nav>

@@ -56,12 +56,16 @@ const Register = (props)=>{
             setObjCheckInput({...objCheckInput,isValidPassword:false})
             return false;
         }
-        
         if(password !== rePassword){
             toast.error("Mật khẩu không khớp nhau!");
             setObjCheckInput({...objCheckInput,isValidRePassword:false})
             return false;
         }
+        if(age<13 || !age){
+            toast.error("Chưa đủ tuổi xem phim người lớn!");
+        }
+        
+        
         return true;
 
    }

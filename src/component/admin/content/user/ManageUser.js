@@ -91,7 +91,7 @@ const  ManageUser = () =>{
                     <div className="table-title"><h3>Danh sách người dùng</h3></div>
                     <div className="actions">
                         <button className="btn btn-success" onClick={()=> resfesh()}>  <FaRedoAlt />Refesh</button>
-                        <button className="btn btn-primary" onClick={()=>setShowModal(true)}> <FcPlus/> Add new user</button>
+                        <button className="btn btn-primary" onClick={()=>setShowModal(true)}> <FcPlus/> Thêm mới người dùng</button>
 
                     </div>
                 </div>
@@ -102,11 +102,11 @@ const  ManageUser = () =>{
                                 <th> STT </th>
                                 <th scope="col">Id</th>
                                 <th scope="col">Email</th>
-                                <th scope="col">Username</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Sex</th>
-                                <th scope="col">Group</th>
-                                <th scope="col">Actions</th>
+                                <th scope="col">Tên</th>
+                                <th scope="col">Tuổi</th>
+                                <th scope="col">Giới tính</th>
+                                <th scope="col">Nhóm</th>
+                                <th scope="col"></th>
                             </tr>
                         </thead>
                         <tbody>

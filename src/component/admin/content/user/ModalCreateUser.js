@@ -89,7 +89,7 @@ const ModalCreateUser = (props)=> {
     else if(validateEmail(email)){
         setObjCheckInput({...objCheckInput,isValidEmail:true})
     }
-   
+    
     if(!password){
         toast.error("Mật khẩu trống");
         setObjCheckInput({...objCheckInput,isValidPassword:false})
@@ -97,6 +97,10 @@ const ModalCreateUser = (props)=> {
     }
     else {
       setObjCheckInput({...objCheckInput,isValidPassword:true})
+  }
+  if(age <13 || !age ){
+    toast.error("Chưa đủ tuổi xem phim người lớn!");
+    return false;
   }
     
     return true;

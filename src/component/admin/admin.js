@@ -50,8 +50,8 @@ const Admin = (props) => {
                     <FaBars  className='collapsed-icon'  />
                     </div>
                     <form className='d-flex mx-4 d-none d-md-flex' role='search'>
-                        <input className='form-control me-2' type='search' placeholder='Search' aria-label='Search' />
-                        <button className='btn btn-primary' type='submit'>Search</button>
+                        <input className='form-control me-2' type='search' placeholder='Tìm kiếm' aria-label='Search' />
+                        <button className='btn btn-primary' type='submit'>Tìm </button>
                     </form>
                     <div className='admin-infor'>
                         Hí admin {account.username} !

@@ -62,6 +62,26 @@
                 }
             }
         }
+        .action-container{
+            margin-top: 10px;
+            .action-like{
+                border: 1px solid rgba(255, 255, 255, 0.4);
+                margin-right: 20px;
+               
+                .icon-like{
+                    font-size: 25px;
+                    text-align: center;
+                }
+                .isLike{
+                    color: red !important;
+                }
+               span{
+                color: rgba(255, 255, 255, 0.4);
+               }
+                
+            }
+        }
+        
     }
 }
 .reponsive-container{

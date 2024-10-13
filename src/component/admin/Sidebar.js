@@ -54,7 +54,7 @@ const SideBar = (props) => {
                         <MenuItem
                             icon={<MdDashboard />}
                         >
-                            Dashboard
+                            Trang quản trị
                             <Link to="/admin" />
                         </MenuItem>
                     </Menu>

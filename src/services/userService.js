@@ -42,4 +42,14 @@ const updateUser = (data) =>{
 const logOutUser = ()=>{
   return instance.post('/logout');
 }
-export {registerNewUser,loginUser,fetchAllUser,deleteUser,fetchGroup,createUsesr,updateUser,logOutUser};
+
+
+const fetchAcount = (data)=>{
+  return instance.get(`/account/read?data=${data}`)
+}
+const updatePassword = (data)=>{
+  return instance.put(`/account/password/update `,{...data})
+}
+export {registerNewUser,loginUser,fetchAllUser,deleteUser,fetchGroup,createUsesr,updateUser,logOutUser,fetchAcount,
+  updatePassword
+};

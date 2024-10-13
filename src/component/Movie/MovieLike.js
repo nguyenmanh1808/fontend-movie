@@ -1,44 +1,46 @@
 import { useEffect, useState } from 'react';
-import {movieType} from '../../services/moviesSevice';
+import { useSelector} from 'react-redux';
+import {movieLike,fetchMovieById} from '../../services/moviesSevice';
 import './MovieCategory.scss'
-import { Link,useParams} from 'react-router-dom';
-const PhimBo = ()=>{
+import { Link } from 'react-router-dom';
+const MovieLike = ()=>{
+    const account = useSelector(state => state.user.account);
+    const isAuthenticated = useSelector(state => state.user.isAuthenticated);
+/// state
     const [movie,setMovie] = useState([]);
-    let {type} = useParams();
 
-    useEffect(()=>{
-        setMovie("")
-        getMovieType();
-    },[type])
+// use efect
+  
+useEffect(()=>{
+    getMovieLike();
+   
+},[])
+///
 
-    const getMovieType = async()=>{
-        let data;
-        if(type === 'phim-le'){
-            data = 'single';
-        }
-        else{
-            data = 'series';
-        }
-        let res = await movieType(data);
-        console.log(res.data)
-        if(res.data && res.data.EC === 0){
-            setMovie(res.data.DT)
-            console.log(res.data.DT)
-            
-        }
-     }
-        const storeMovieId = (item)=>{
-            sessionStorage.setItem("movieId", item.id);
-        }
+const getMovieLike = async()=>{
+    let res = await movieLike(account.access_token);
+    console.log(res.data)
+    if(res.data && res.data.EC === 0){
+        
+        let arr = res.data.DT.map(item =>{
+            return item.Movie
+         })
+
+        setMovie(arr)
+        
+    }
+ }
+    const storeMovieId = (item)=>{
+        sessionStorage.setItem("movieId", item.id);
+    }
     return (
-        <div>
-             <div className='movies-class-category'>
+        <div className='movies-class-category'>
         <div className='movies-category'>
-            <Link to="#">  {type === 'phim-le' ? "Phim lẻ" : "Phim bộ"} </Link>
+            <Link to="#"> Danh sách phim ưa thích </Link>
         </div>
         <div className='movies-list'>
             {movie && movie.length > 0 ? 
-                Array.from({length:movie.length > 20 ? 20: movie.length }).map((_,index)=>{
+                Array.from({length:movie.length > 10 ? 10: movie.length }).map((_,index)=>{
                     return (
                         <Link key={`movie-${index}`} to={`/movie/${movie[index].slug}-tap-1`} className='c-2-5' onClick={()=>storeMovieId(movie[index])} >
                             <div className='movies_img'  >     
@@ -54,7 +56,7 @@ const PhimBo = ()=>{
                 <>
                     <div>
                         <h3>
-                          Admin lười quá chưa cập nhật phim
+                          Danh sách phim yêu thích rỗng
                         </h3>
                     </div>
                 </> 
@@ -62,8 +64,8 @@ const PhimBo = ()=>{
            
         </div>
     </div>
-        </div>
     )
+    
 }
 
-export default PhimBo
+export default MovieLike;

@@ -8,7 +8,7 @@ import { PersistGate } from 'redux-persist/integration/react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter,Routes,Route, Router} from "react-router-dom";
 import HomePage from './component/Home/HomePage';
-import PhimMoi from './component/Movie/PhimMoi';
+import MovieNational from './component/Movie/MovieNational';
 import PhimBo from './component/Movie/PhimBo';
 import Login from './component/Login/Login';
 import Register from './component/Register/Register';
@@ -27,22 +27,28 @@ import ManageComment from './component/admin/content/comment/ManageComment';
 import ManageEpi from './component/admin/content/epi/ManageEpi';
 import MovieSearch from './component/Movie/MovieSearch';
 import 'nprogress/nprogress.css'
+import MovieLike from './component/Movie/MovieLike';
+import MovieHistory from './component/Movie/MovieHistory'
+import ChangePassword from './component/user/changePassword';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <Provider store={store}>
-    <PersistGate loading={null} persistor={persistor}>
+    <PersistGate  persistor={persistor}>
       <BrowserRouter>
       <Routes>
           <Route path='login'  element={<Login/>} />
           <Route path='register' element={<Register/>} />
           <Route path='/' exact element={<App/>}>
               <Route index  element={<HomePage/>} />
-              <Route path='phim-moi'  element={<PhimMoi/>} />
-              <Route path='phim-bo'  element={<PhimBo/>} />
+              <Route path='national/:national'  element={<MovieNational/>} />
+              <Route path='type/:type'  element={<PhimBo/>} />
               <Route path='movie/category/:id' exact element={<MovieCategory/>}/>
               <Route path='movie/:slug'  element={<DetailMovie/>}/>
               <Route path='account' element={<UserInfor/>} />  
               <Route path='search' element={<MovieSearch/>}/>
+              <Route path='like-movie' element={<MovieLike/>}/>
+              <Route path='history' element={<MovieHistory/>}/>
+              <Route path='change-password' element={<ChangePassword/>}/>
           </Route>
 
           <Route path="/admin" element={<PrivateRoutes Component={Admin}/>}>
@@ -52,7 +58,6 @@ root.render(
             <Route path='manage-category' element={<ManageCategory/>} />
             <Route path='manage-comment' element={<ManageComment/>}/>
             <Route path='manage-eps/:id' element={<ManageEpi/>}/>
-           
           </Route> 
 
           <Route path='*' element="404 not found" />

@@ -1,5 +1,5 @@
 import './detailMovie.scss'
-import { fetchMovieById,fetchAllMovies } from '../../services/moviesSevice'
+import { fetchMovieById,fetchAllMovies,movieLike,createMovieLike,deleteMovieLike,createMovieHistory } from '../../services/moviesSevice'
 import { fetchCategoryByMovieId } from '../../services/categoryService';
 import {fetchMovieComment,createComment} from '../../services/commentService';
 import { fetchEps } from '../../services/epsService';
@@ -10,13 +10,13 @@ import { useSelector} from 'react-redux';
 import ModaNotifi from './ModalNotifi';
 import { FaUserSecret } from "react-icons/fa";
 import { toast } from 'react-toastify';
+import { AiOutlineLike } from "react-icons/ai";
 const DetailMovie = (props) =>{
     const url = 'http://localhost:8081/video/';
     // user is login
     const account = useSelector(state => state.user.account);
     const isAuthenticated = useSelector(state => state.user.isAuthenticated);
     ///
-
     const [movie,setMovie] = useState({});
     const [category,setCategory] = useState([]);
     const [epis,setEpis] = useState([])
@@ -28,12 +28,14 @@ const DetailMovie = (props) =>{
     //
     const [content,setContent] = useState("");
     const [listComment,setListCommnet] = useState([]);
+    const [isLike,setIsLike] = useState(false)
     /// state modal
     const [show,setShow] = useState(false);
 
     let history = useNavigate();
 
     useEffect(()=>{
+        setVideo()
         window.scrollTo(0, 0);
         getmovie(); 
         getCategory();
@@ -42,7 +44,9 @@ const DetailMovie = (props) =>{
        if(isAuthenticated !== true){
         setShow(true);
        }
-    },[])
+       getLike();
+       addMovieHistory();
+    },[slug])
     //deafault
     //get movies
     const getmovie = async()=>{
@@ -70,7 +74,6 @@ const DetailMovie = (props) =>{
         if(res.data && res.data.EC === 0 && res.data.DT.episode.length > 0){
                 setEpis(res.data.DT.episode);
                 let arr =   res.data.DT.episode;
-                console.log(arr)
                  arr.map((item,index)=>{       
                      if(slug.includes(`tap-${item.slug}`)){
                         setVideo(item.ep_url)
@@ -118,11 +121,8 @@ const DetailMovie = (props) =>{
     }
     //thay ddoooir  tập phim
     const changeEpi = (item)=>{
-            history(`/movie/${movie.slug}-tap-${item.slug}`);
-          
-            window.location.reload();
+            history(`/movie/${movie.slug}-tap-${item.slug}`);     
     }
-   
     //lưu id film
     const storeMovieId = (item)=>{
         sessionStorage.setItem("movieId", item.id);
@@ -155,6 +155,62 @@ const DetailMovie = (props) =>{
             toast.success("Đang gửi bình luận");
             getComment();
         }
+     }
+     // thêm danh sách phim yêu thích
+     const getLike = async()=>{
+        let movieID = sessionStorage.getItem("movieId");
+        let res = await movieLike(account.access_token);
+        if(res.data && res.data.EC === 0){
+            res.data.DT.map((item,index)=>{
+                if(item.movieId === +movieID){
+                    setIsLike(true)
+                }
+            })
+           
+        }
+     }
+     const handleLike =async()=>{
+        let movieId = sessionStorage.getItem("movieId");
+        let data ={
+            token:account.access_token,
+            movieId: movieId
+        }
+        if(isLike === false){
+            let res = await createMovieLike(data)
+           if(res.data && res.data.EC === 0){
+                toast.success(res.data.EM);
+                setIsLike(true);
+           }
+        }
+        else{     
+            let res = await deleteMovieLike(data)  
+            if(res.data && res.data.EC === 0){
+                toast.error(res.data.EM);
+                setIsLike(false);
+           }
+           
+        }
+     }
+     // thêm vào lịch sử xem
+     const addMovieHistory = async ()=>{
+        let epiHistory 
+        if(epis && epis.length > 0){
+            epis.map((item,index) =>{
+                if(slug.includes(`tap-${item.slug}`)){
+                    epiHistory = item.slug
+                }
+            })
+        }
+        else{
+            epiHistory = 1;
+        }
+        let movieId = sessionStorage.getItem("movieId");
+        let data ={
+            token:account.access_token,
+            movieId: movieId,
+            slug:epiHistory
+        }
+        await createMovieHistory(data)
      }
     return (
         <>
@@ -221,8 +277,13 @@ const DetailMovie = (props) =>{
                                                 </div>
                                             </div>
                                         </div>
-
                                    }
+                            </div>
+                            <div className='action-container'>         
+                                   <div className='action-like btn ' onClick={()=>handleLike()}>
+                                    < AiOutlineLike className={isLike ? 'isLike icon-like' : 'icon-like'} />
+                                    <span> Yêu thích</span>
+                                   </div>
                             </div>
                         </div>
                     </>

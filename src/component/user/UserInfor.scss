@@ -53,11 +53,20 @@
             }
             
         }
-        .update-account{
-            padding-top: 6px;
-            text-decoration: none;
-          
+        .list-option{
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            .like-movie,
+            .history-movie,
+            .change-password,
+            .update-account{
+                padding-top: 6px;
+                text-decoration: none;
+              
+            }
         }
+       
     }
     .setting-account{
         margin-top: 30px;
@@ -82,5 +91,74 @@
         }
     }
 }
+.change-password-container{
+    margin: 30px 80px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .title{
+        h2{
+            color: rgb(255,255,255,87%);
 
+        }
+    }
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        .old-pass,
+        .new-pass,
+        .again-pass{
+            position: relative;
+            label{
+                color: rgb(255,255,255,87%);
+                font-weight: 550;
+               }
+            input{
+                background-color: rgb(40, 40, 42);
+                color: rgb(255,255,255,87%) !important;
+                padding: 12px 50px 12px 14px;
+                font-weight: 500;
+                border: 1px solid rgb(255,255,255,40%);
+                &:focus{
+                    box-shadow: none;
+                }
+            }
+            .appear-pass{
+                position: absolute;
+                top: 53%;
+                left: 88%;
+                cursor: pointer;
+                svg{
+                    color: rgb(255,255,255,40%);
+                    font-size: 22px;
+                }
+            }
+    
+          
+        }
+        .button-change{
+            background-color: #ed2c25;
+            width: 250px;
+            color: rgb(255,255,255,87%);
+            border: none;
+            font-size: 24px;
+            padding: 5px 15px;
+            font-weight: 450;
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+        .button-return{
+            margin-left:15px ;
+            font-size: 24px;
+            font-weight: 450;
+            color: rgb(255,255,255,87%);
+            border: 1px solid rgb(255,255,255,87%);
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+    } 
+}
 
