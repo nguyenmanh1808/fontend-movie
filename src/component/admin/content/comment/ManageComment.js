@@ -94,7 +94,7 @@ const refresh = ()=>{
                                       <td>{item.id}</td>
                                       <td>{item.User.username}</td>
                                       <td>{item.Movie.name}</td>
-                                      <td width={'40%'}>{item.content}</td>
+                                      <td width={'35%'}>{item.content}</td>
                                       <td>
                                           <button className="btn btn-danger"  onClick={()=>handleDelete(item)} ><MdDelete/></button>
                                       </td>

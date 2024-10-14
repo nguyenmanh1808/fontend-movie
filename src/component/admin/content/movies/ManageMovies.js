@@ -44,11 +44,10 @@ const ManageMovie =(props)=>{
         if(respone && respone.data && +respone.data.EC === 0){
              setTotalPage(respone.data.DT.toatalPage)
              setListMovie(respone.data.DT.movie)
+             console.log(respone.data.DT)
              if(respone.data.DT.movie.length === 0){
                  setCurrentPgae(+currentPage-1)
              }
- 
-            
             
         }
      }

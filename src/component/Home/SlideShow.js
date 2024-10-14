@@ -22,7 +22,7 @@ const SlideShow = () => {
     <>
       <Fade>
         { listMovie && listMovie.length > 0 && 
-          Array.from({length:listMovie.length > 5 ? 5: listMovie.length }).map((_,index)=> (
+          Array.from({length:listMovie.length > 12 ? 12: listMovie.length }).map((_,index)=> (
             <Link key={`movie-${index}`} to={`/movie/${listMovie[index].slug}-tap-1`}  onClick={()=>storeMovieId(listMovie[index])} >
             <div className='movies_img'  >     
                <img style={{ width: '100%',height:'554px' }} src={require(`../../assets/SlideImage/${listMovie[index].img_thumb}`)} alt=''  ></img>   

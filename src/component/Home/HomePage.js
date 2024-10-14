@@ -68,7 +68,7 @@ const HomePage = (props)=>{
          <div className='app-content'>
             <div className='movies-class'>
                 <div className='movies-category'>
-                    <Link to="#"> Phim tình cảm </Link>
+                   {listMovies && listMovies.length > 0 &&  <Link to="#"> Phim tình cảm </Link>}
                 </div>
                 <div className='movies-list'>
                     {listMovies && listMovies.length > 0 && 
@@ -89,7 +89,7 @@ const HomePage = (props)=>{
             </div>
             <div className='movies-class'>
                 <div className='movies-category'>
-                    <Link to="#"> Phim hành động </Link>
+                    {movieAction && movieAction.length > 0 && <Link to="#"> Phim hành động </Link>}
                 </div>
                 <div className='movies-list'>
                     {movieAction && movieAction.length > 0 && 
@@ -110,7 +110,7 @@ const HomePage = (props)=>{
             </div>
             <div className='movies-class'>
                 <div className='movies-category'>
-                    <Link to="#"> Phim viễn tưởng </Link>
+                   {virtualMovie &&  virtualMovie.length > 0 &&<Link to="#"> Phim viễn tưởng </Link>}
                 </div>
                 <div className='movies-list'>
                     {virtualMovie && virtualMovie.length > 0 && 
@@ -131,7 +131,7 @@ const HomePage = (props)=>{
             </div>
             <div className='movies-class'>
                 <div className='movies-category'>
-                    <Link to="#"> Phim hoạt hình</Link>
+                   {cartoon && cartoon.length > 0 &&  <Link to="#"> Phim hoạt hình</Link>}
                 </div>
                 <div className='movies-list'>
                     {cartoon && cartoon.length > 0 && 
